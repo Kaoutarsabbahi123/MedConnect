@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    padding-top: 40px;
+    color: #2e323c;
+    background: #f5f6fa;
+    position: relative;
+    min-height: 100vh; /* Ensure the body takes up at least the height of the viewport */
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 0;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
+
+.user-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Use half of the width/height to create a circular avatar */
+    object-fit: cover;
+    border: 3px solid #00ADB3;  /* Ensure the image covers the entire space without distortion */
+}
+
+.about h5 {
+    color: #187C88;
+    margin-bottom: 15px; /* Increase bottom margin for better separation */
+}
+
+.form-control {
+    border: 1px solid #cfd1d8;
+    border-radius: 20px; /* Rounded corners for input fields */
+    font-size: .825rem;
+    background: #ffffff;
+    color: #2e323c;
+    margin-bottom: 10px; /* Add some space between form controls */
+    padding: 10px 15px; /* Add padding for better visual appearance */
+    transition: all 0.3s ease; /* Smooth transition on hover */
+}
+
+.form-control:focus {
+    border-color: #00ADB3; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 173, 179, 0.5); /* Add a subtle shadow on focus */
+}
+
+.btn {
+    border-radius: 20px; /* Match the card's border-radius for consistency */
+    min-width: 100px; /* Ensure buttons have a consistent width */
+}
+
+.btn:hover {
+    transform: translateY(-2px); /* Légère translation vers le haut au survol */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajout d'une légère ombre au survol */
+}
+
+.btn-primary {
+    background-color: #00ADB3; /* Couleur de fond du bouton "Update" */
+    border-color: #00ADB3; /* Couleur de bordure du bouton "Update" */
+}
+
+.btn-primary:hover {
+    background-color: #007D82; /* Couleur de fond du bouton "Update" au survol */
+    border-color: #007D82; /* Couleur de bordure du bouton "Update" au survol */
+}
+
+#mes-informations {
+    text-align: center; /* Centrer le titre */
+    color: #187C88; /* Couleur du texte */
+    font-size: 1.5rem; /* Taille de la police */
+    font-weight: bold; /* Style du texte en gras */
+}
+
+.card-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Hauteur maximale pour centrer verticalement */
+}
+
+.user-profile {
+    margin-bottom: 70px; /* Ajustement de la marge inférieure pour déplacer légèrement vers le haut */
+}
+
+.user-name {
+    margin-top: 10px; /* Ajouter un espace entre le nom et la photo */
+}
+
+.user-role {
+    color: #6c757d; /* Couleur du rôle de l'utilisateur */
+    margin-top: 0; /* Suppression de la marge supérieure par défaut */
+}

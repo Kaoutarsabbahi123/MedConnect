@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MedConnect</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/img/pharmacie.png" type="image/png">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <img src="assets/img/pharmacie (1).png" width="40" height="40" style="margin-right:10px;
+      margin-left:3px;">
+      <h1 class="logo me-auto"><a href="#" class="logo">
+        <a th:href="@{/}"><a href="#" class="logo">
+          MedConnect</a> </a> </a></h1>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Acceuil</a></li>
+          <li><a class="nav-link scrollto" href="#about">à propos</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="#departments">Départements</a></li>
+          <li><a class="nav-link scrollto" href="#doctors">Docteurs</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      <a class="appointment-btn scrollto login-link" th:href="@{/login}">Espace Agent</a>
+      <a class="appointment-btn scrollto" th:href="@{/rendezvous}"><span class="d-none d-md-inline">rendez-vous</span></a>
+
+    </div>
+  </header>
+
+
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <h1>bienvenue chez MedConnect</h1>
+    </div>
+  </section>
+
+  <main id="main">
+
+
+    <section id="why-us" class="why-us">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 d-flex align-items-stretch">
+            <div class="content">
+              <h3>Pourquoi choisir MedConnect ?</h3>
+              <p>
+                Bienvenue chez MedConnect, votre clinique de confiance où l'union entre technologie et santé crée une expérience de soins inégalée.  Notre équipe médicale d'experts combine expertise clinique et innovation pour vous offrir des soins personnalisés et efficaces. Faites le choix de la qualité et de l'excellence en choisissant MedConnect pour tous vos besoins de santé.
+            </div>
+          </div>
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="icon-boxes d-flex flex-column justify-content-center">
+              <div class="row">
+                <div class="col-xl-5 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-receipt"></i>
+                    <h4>Urgence 24h/24</h4>
+                    <p>Notre clinique dispose d'un service d'urgence qui accueille 24h/24 et 7j/7 toutes personnes en situation de crises transportées elles-mêmes ou par ambulance.</p>
+                  </div>
+                </div>
+                <div class="col-xl-5 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-images"></i>
+                    <h4>horaires de consultations</h4>
+                    <p><pre style="font-size:15px; color: #848484;font-family: Open Sans, sans-serif;">Lundi-Vendredi      7:00-22:00</pre>
+                      <pre  style="font-size:15px; color: #848484;font-family: Open Sans, sans-serif;">Samedi                8:00-13:00</pre>
+                      <pre  style="font-size:15px; color: #848484;font-family: Open Sans, sans-serif;">Dimanche            8:00-12:00</pre></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative" style="margin-left:10px;"></div>
+          <div class=" col-xl-5 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5" style="margin-left:60px;">
+            <h3>A TRAVERS LE MAROC </h3>
+            <p>Une présence dans 3 villes </p>
+
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-geo-alt"></i></div>
+              <h4 class="title">Casablanca</h4>
+              <p class="description">45 Boulevard de paris</p>
+            </div>
+
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-geo-alt"></i></div>
+              <h4 class="title">Tanger</h4>
+              <p class="description">25 rue Carnot</p>
+            </div>
+
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-geo-alt"></i></div>
+              <h4 class="title">Agadir</h4>
+              <p class="description">454 Avenue Général kettani </p>
+            </div>
+
+          </div>
+        </div>
+        </div>
+
+      </div>
+    </section>
+
+    
+    <section id="counts" class="counts" style="background-color: #FAFAFA;">
+      <div class="container" >
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="fas fa-user-md"></i>
+              <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Docteurs</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+            <div class="count-box">
+              <i class="far fa-hospital"></i>
+              <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Départements</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="fas fa-flask"></i>
+              <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Laboratoires</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="fas fa-award"></i>
+              <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Prix</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title" >
+          <h2 style="color:#005761;">Services</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="">Imagerie Médicale radiographie,échographie..</a></h4>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-pills"></i></div>
+              <h4><a href="">Soins palliatifs et gestion de la douleur</a></h4>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-hospital-user"></i></div>
+              <h4><a href="">Examens Physiques et bilans de santé</a></h4>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-dna"></i></div>
+              <h4><a href="">Laboratoire et Analyse Médicales</a></h4>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-wheelchair"></i></div>
+              <h4><a href="">Physiothérapie et rééducation</a></h4>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-notes-medical"></i></div>
+              <h4><a href="">Urgence médicale et premiers soins</a></h4>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="departments" class="departments">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Départements</h2>
+        </div>
+
+        <div class="row gy-4">
+          <div class="col-lg-3">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Cardiologie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Neurologie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Pneumologie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Pédiatrie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Ophtalmologie</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-9">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="tab-1">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Cardiologie</h3>
+                    <p class="fst-italic">La cardiologie est la branche de la médecine qui se concentre sur
+                      <br> le diagnostic et le traitement des maladies du cœur et des vaisseaux sanguins. Les cardiologues sont spécialisés dans le traitement des affections telles que les maladies coronariennes, l'hypertension artérielle, les maladies cardiaques congénitales, les arythmies cardiaques et l'insuffisance cardiaque.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/poles-excellence-72-08-copy.png" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-2">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Neurologie</h3>
+                    <p class="fst-italic">La neurologie est la spécialité médicale qui se consacre à l'étude du système nerveux et à ses affections.<br> Les neurologues diagnostiquent et traitent les maladies du cerveau, de la moelle épinière, des nerfs périphériques et des muscles. Cela inclut des conditions telles que les migraines, les accidents vasculaires cérébraux, la sclérose en plaques, la maladie d'Alzheimer, la maladie de Parkinson et les traumatismes crâniens</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/istockphoto-1289946348-612x612.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-3">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Pneumologie</h3>
+                    <p class="fst-italic"> La branche de la médecine qui traite des maladies des voies respiratoires, des poumons et de la plèvre. Les pneumologues diagnostiquent et traitent des affections telles que l'asthme, la bronchite, la pneumonie, le cancer du poumon et d'autres problèmes respiratoires.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/23517759-pneumologue-vecteur-illustration-avec-medecin-pneumologie-poumons-respiratoire-systeme-examen-et-traitement-dans-plat-dessin-anime-main-tire-modeles-vectoriel.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-4">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Pédiatrie</h3>
+                    <p class="fst-italic">La pédiatrie est la spécialité médicale qui se consacre à la santé des nourrissons, des enfants et des adolescents. Les pédiatres sont formés pour diagnostiquer, traiter et prévenir un large éventail de maladies infantiles, ainsi que pour fournir des soins de santé généraux, tels que les examens de routine, les vaccinations et le suivi du développement</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/pediatric-1024x532-1.webp" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-5">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Ophtamplogie</h3>
+                    <p class="fst-italic">Les soins oculaires, également connus sous le nom d'ophtalmologie, sont la spécialité médicale qui se concentre sur la santé des yeux et du système visuel. Les ophtalmologistes diagnostiquent et traitent les affections oculaires telles que la cataracte, le glaucome, la dégénérescence maculaire, les troubles de la réfraction (comme la myopie et l'astigmatisme) et les infections oculaires. Ils peuvent également effectuer des chirurgies oculaires telles que la correction de la vision au laser et la chirurgie de la cataracte</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/illustration-vectorielle-plate-de-la-nomination-clinique-eye-optométriste-vérifiant-vue-des-enfants-avec-lunettes-équipement-162572036.webp" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="doctors" class="doctors">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Doctors</h2>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <div class="member d-flex align-items-start">
+              <div class="pic"><img src="assets/img/f.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Fadoua Bennani</h4>
+                <span>Médecin chef</span>
+                <p>supervise et dirige les activités médicales et cliniques</p>
+                <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mt-4 mt-lg-0">
+            <div class="member d-flex align-items-start">
+              <div class="pic"><img src="assets/img/p.webp" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Nabil bejeloun</h4>
+                <span>Professeur en pédiatrique</span>
+                <p>Enseigne, supervise et prodigue des soins aux enfants</p>
+                <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mt-4">
+            <div class="member d-flex align-items-start">
+              <div class="pic"><img src="assets/img/l.webp" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Aniss mechkour</h4>
+                <span>Chirurgien cardiologue</span>
+                <p>traite les affections du cœur et des vaisseaux sanguins.</p>
+                <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mt-4">
+            <div class="member d-flex align-items-start">
+              <div class="pic"><img src="assets/img/m.webp" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Manal lyassimi</h4>
+                <span>Docteur en pneumologie</span>
+                <p>Spécialiste dans le diagnostic des maladies  respiratoires  </p>
+                <div class="social">
+                  <a href=""><i class="ri-twitter-fill"></i></a>
+                  <a href=""><i class="ri-facebook-fill"></i></a>
+                  <a href=""><i class="ri-instagram-fill"></i></a>
+                  <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+        </div>
+      </div>
+
+      
+
+      <div class="container">
+        <div class="row mt-5">
+
+          <div class="col-lg-4">
+            <div class="info">
+             
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>MedConnect@gmail.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Télephone:</h4>
+                <p>+212 701302155</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+            <form action="/api/contact" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Nom" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder=" Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Sujet" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="sent-message " ></div>
+                <div class="error-message d-none" ></div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer">
+
+    
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>MedConnect</span></strong>. All Rights Reserved
+        </div>
+       
+       
+      </div>
+     
+    </div>
+  </footer>
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  var form = document.querySelector('.php-email-form');
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    var formData = new FormData(form);
+    var url = form.getAttribute('action');
+  document.querySelector('.loading').style.display = 'block';
+    fetch(url, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+     document.querySelector('.loading').style.display = 'none';
+      if (response.ok) {
+        return response.text();
+      } else {
+        return response.text().then(text => {
+          throw new Error(text);
+        });
+      }
+    })
+    .then(data => {
+      document.querySelector('.sent-message').style.display = 'block';
+      document.querySelector('.error-message').style.display = 'none';
+      document.querySelector('.sent-message').innerHTML = data;
+      form.reset();
+    })
+    .catch(error => {
+      document.querySelector('.error-message').innerHTML = error.message;
+      document.querySelector('.error-message').style.display = 'block';
+      document.querySelector('.sent-message').style.display = 'none';
+    });
+  });
+});
+
+</script>
+
+  </a></body>
+
+</html>

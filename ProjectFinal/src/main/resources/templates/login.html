@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedConnect -Connectez-vous</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+ <link rel="icon" href="assets/img/pharmacie.png" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <style>
+    .divider:after,
+    .divider:before {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #eee;
+    }
+
+    .h-custom {
+      height: calc(100% - 73px);
+    }
+
+    @media (max-width: 450px) {
+      .h-custom {
+        height: 100%;
+      }
+    }
+    h1 {
+        font-family: "Open Sans", sans-serif;
+        color:#005761;
+        font-weight: bold;
+    }
+    .title p{
+        font-family: "Open Sans", sans-serif;
+        color:black;
+        letter-spacing: 1px; 
+        font-size: 17px;
+        font-weight: 270px;
+    }
+ .input-div{
+	position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #d9d9d9;
+}
+ .input-div.one{
+	margin-top: 0;
+}
+
+.i{
+	color: #d9d9d9;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.i i{
+	transition: .3s;
+}
+
+.input-div > div{
+    position: relative;
+	height: 45px;
+}
+
+.input-div > div > h5{
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #999;
+	font-size: 18px;
+	transition: .3s;
+}
+
+.input-div:before, .input-div:after{
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	width: 0%;
+	height: 2px;
+	background-color: #00ADB3;
+	transition: .4s;
+}
+
+.input-div:before{
+	right: 50%;
+}
+
+.input-div:after{
+	left: 50%;
+}
+
+.input-div.focus:before, .input-div.focus:after{
+	width: 50%;
+}
+
+.input-div.focus > div > h5{
+	top: -5px;
+	font-size: 15px;
+}
+
+.input-div.focus > .i > i{
+	color: #00ADB3;
+}
+
+.input-div > div > input{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	background: none;
+	padding: 0.5rem 0.7rem;
+	font-size: 1.2rem;
+	color: #555;
+	font-family: "Open Sans", sans-serif;
+}
+
+.input-div.pass{
+	margin-bottom: 4px;
+}
+.btn-login {
+  margin-left: 25px;
+  background: #00ADB3;
+  color: #fff;
+  border-radius: 20px;
+  padding: 8px 25px;
+  white-space: nowrap;
+  transition:  box-shadow 0.3s, transform 0.3s; /* Ajout de la transition pour la propriété transform */
+  font-size: 14px;
+  display: inline-block;
+  border-style: none;
+  transform: translate(-50%, -50%); 
+}
+
+.btn-login:hover {
+  background: #187C88;
+  color: #fff;
+  box-shadow: 6px 6px 6px 0px gray;
+  transform: translate(-50%, -50%) scale(1.05); /* Ajout d'une légère mise à l'échelle au survol */
+}
+.link-mdp {
+  text-decoration: none;
+  color: #005761;
+}
+
+.link-mdp:hover {
+  color: #00ADB3; /* Changez la couleur selon vos préférences */
+}
+
+  </style>
+
+</head>
+
+<body>
+
+  <section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="assets/img/vecteezy_man-entering-security-password_4689193-1.jpg"
+            class="img-fluid" alt="Sample image" style="margin-left:-50px;">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1"style="margin-left:60px; margin-right:20px;">
+
+            <div class="  title align-items-center justify-content-center" style="margin-bottom: 50px; margin-top:19px;">
+                <h1 class="text-center">BIENVENUE</h1>
+                <p class="text-center">Connectez-vous à votre compte</p>
+
+            </div>
+            <form id="loginForm">
+            <!-- Email input -->
+            <div class="input-div one"> 
+                <div class="i">
+                        <i class="fas fa-user"></i>
+                </div>
+                <div class="div" >
+                        <h5>Email</h5>
+                        <input type="text" class="input" id="login">
+                </div>
+             </div>
+             <div class="input-div pass">
+                <div class="i"> 
+                     <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                     <h5>Mot de passe</h5>
+                     <input type="password" class="input" id="password">
+             </div>
+          </div>
+                <div id="errorMessage" style="margin-top:20px;" ></div>
+
+                <div class="d-flex justify-content-between align-items-center" style="margin-top:20px;margin-bottom:40px;">
+            
+              <a class="link-mdp " th:href="@{/SendEmail}">Mot de passe oublié?</a>
+            </div>
+
+              <div class="text-center text-lg-start mt-4 pt-2">
+                  <button type="button" class="btn-login scrollto align-items-center shadow-lg" id="btn-login"
+                          style="padding-left: 2.5rem; padding-right: 2.5rem;margin-left:265px;">Se connecter</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-2 px-2 px-xl-3
+    " style="background-color: #00ADB3;margin-top: 33px;">
+      <!-- Copyright -->
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright text-white">
+          &copy; Copyright <strong><span>MedConnect</span></strong>. All Rights Reserved
+        </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>const inputs = document.querySelectorAll(".input");
+
+function addcl() {
+    let parent = this.parentNode.parentNode;
+    parent.classList.add("focus");
+}
+
+function remcl() {
+    let parent = this.parentNode.parentNode;
+    if (this.value === "") {
+        parent.classList.remove("focus");
+    }
+}
+
+inputs.forEach(input => {
+    input.addEventListener("focus", addcl);
+    input.addEventListener("blur", remcl);
+});
+  </script>
+  <script src="assets/js/login.js"></script>
+</body>
+
+</html>

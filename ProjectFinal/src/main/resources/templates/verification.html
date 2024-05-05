@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/css/styleVerif.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/pharmacie.png"/>
+    <title>MAIL CODE VALIDATOR</title>
+</head>
+<body>
+<div class="container">
+    <form id="verificationForm" th:action="@{/api/verifierCode}" method="post">
+        <section class="header">
+            <h1>Vérification</h1>
+            <img src="assets/img/profil.png" width="100px">
+        </section>
+        <section class="input">
+            <p>Veuillez entrer le code envoyé par email</p><br>
+            <div class="inputs">
+                <input type="number" name="code1"/>
+                <input type="number" name="code2" disabled/>
+                <input type="number" name="code3" disabled/>
+                <input type="number" name="code4" disabled/>
+            </div>
+        </section>
+        <br>
+        <div id="message"  style="color: red; font-size:15px;text-align:center;"></div>
+        <section class="btn">
+            <button type="button" onclick="submitForm()">Valider</button>
+        </section>
+    </form>
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <p class="modal-message"></p>
+        <button class="modal-retry-button">Réessayer</button>
+        <button class="modal-cancel-button">Annuler</button>
+    </div>
+</div>
+<script src="assets/js/verification.js"></script>
+</body>
+</html>
