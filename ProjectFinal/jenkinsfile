@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = 'nom-de-votre-image:latest'
+    }
+
+    stages {
+        stage('Clone') {
+            steps {
+                // Clone le code depuis Git
+                git 'https://github.com/Kaoutarsabbahi123/ProjectFinal-SpringBoot.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Utilise Maven pour construire le projet
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Build Docker image') {
+            steps {
+                // Construit l'image Docker
+                script {
+                    docker.build(env.DOCKER_IMAGE)
+                }
+            }
+        }
+
+        stage('Push Docker image') {
+            steps {
+                // Pousse l'image Docker vers un registre
+                script {
+                    docker.withRegistry('https://registry.example.com', 'credentials-id') {
+                        docker.image(env.DOCKER_IMAGE).push()
+                    }
+                }
+            }
+        }
+    }
+}
