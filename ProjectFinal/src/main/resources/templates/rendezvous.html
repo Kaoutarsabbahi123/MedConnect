@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MedConnect -Inscrivez-vous</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/pharmacie.png"/>
+    <link href="assets/css/StyleRendezvous.css" rel="stylesheet">
+    <style>
+        /* Styles personnalisés */
+        body {
+            background-color: #eee;
+            color: #187C88;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            margin-top:10px;
+        }
+        .form-container h2 {
+            font-weight: bold;
+        }
+        .form-label {
+           /*font-weight: bold;*/
+            color: black;
+
+        }
+        .form-control {
+            border-color: #eee;
+            color: black;
+            background-color: white;
+        }
+        .form-control::placeholder {
+            color: #ffffff;
+            opacity: 0.5;
+        }
+        .btn-submit {
+            background-color: #00ADB3;
+            border-color: #00ADB3;
+            color:white;
+            margin-left:290px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-top:20px;
+            font-weight: 50px;
+            width:200px;
+            font-size:18px;
+        }
+        .btn-submit:hover {
+            background-color: #187C88;
+            color:white;
+        }
+        .form-control:focus {
+  border-color: #00ADB3; /* Changez la couleur de la bordure au focus */
+  box-shadow: 0 0 0 0.25rem rgba(0, 173, 179, 0.25); /* Changez la couleur et l'intensité de l'ombre au focus */
+}
+.form-select:focus{
+ border-color: #00ADB3; /* Changez la couleur de la bordure au focus */
+  box-shadow: 0 0 0 0.25rem rgba(0, 173, 179, 0.25);
+}
+
+.form-check-label{
+   color:#7B7E7E;
+}
+.form-select{
+    color:#7B7E7E;
+}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-container">
+                <h2 class="text-center mb-4">PRENDRE UN RENDEZ-VOUS</h2>
+                <form class="mx-1 mx-md-4"  th:action="@{/api/rendezvous/save}" method="post" id="registrationForm" onsubmit="return validateForm()">
+                    <div class="row">
+                        <!-- Première colonne -->
+                        <div class="col-md-6">
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Votre adresse email" required>
+                            </div>
+                            <!-- Nom -->
+                            <div class="mb-3">
+                                <label for="nom" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom" required>
+                            </div>
+                            <!-- Sexe -->
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom:19px; ">Sexe</label><br>
+                                <div class="form-check form-check-inline" >
+                                    <input class="form-check-input" type="radio" name="sexe" id="homme" value="homme" required>
+                                    <label class="form-check-label" for="homme">Homme</label>
+                                </div>
+                                <div class="form-check form-check-inline" >
+                                    <input class="form-check-input" type="radio" name="sexe" id="femme" value="femme" required>
+                                    <label class="form-check-label" for="femme">Femme</label>
+                                </div>
+                            </div>
+                            <!-- Téléphone -->
+                            <div class="mb-3">
+                                <label for="telephone" class="form-label">Téléphone</label>
+                                <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="Votre numéro de téléphone" required>
+                            </div>
+                        </div>
+                        <!-- Deuxième colonne -->
+                        <div class="col-md-6">
+                            <!-- CIN -->
+                            <div class="mb-3">
+                                <label for="cin" class="form-label">CIN</label>
+                                <input type="text" class="form-control" id="cin" name="cin" placeholder="Votre CIN" required>
+                            </div>
+                            <!-- Prénom -->
+                            <div class="mb-3">
+                                <label for="prenom" class="form-label">Prénom</label>
+                                <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Votre prénom" required>
+                            </div>
+                            <!-- Adresse -->
+                            <div class="mb-3">
+                                <label for="adresse" class="form-label">Adresse</label>
+                                <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Votre adresse" required>
+                            </div>
+                            <!-- Date de naissance -->
+                            <div class="mb-3">
+                                <label for="dateNaissance" class="form-label">Date de naissance</label>
+                                <input type="date" class="form-control" style ="color:#ACAFAF;" id="dateNaissance" name="dateNaissance" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Première rangée de listes déroulantes -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="specialite" class="form-label">Spécialité du docteur</label>
+                            <select  class="form-select " id="specialite" name="specialite"  required>
+                                <option value="">Choisissez une spécialité</option>
+                                <option th:each="specialite: ${specialites}" th:value="${specialite.id_specialite}" th:text="${specialite.nom}"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="docteur" class="form-label">Docteur</label>
+                            <select class="form-select" id="docteur" name="docteur"  required readonly>
+                                <option value="" selected disabled>Sélectionnez une docteur</option>
+                            </select>
+                            <input type="hidden" id="specialiteId" name="id_specialite" value="">
+                        </div>
+                    </div>
+
+                    <!-- Deuxième rangée de listes déroulantes -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="date-dispo" class="form-label">Date disponible</label>
+                            <select  class="form-select" id="date-dispo" name="date_RDV" required  readonly>
+                                <option value="" selected disabled>Sélectionnez une date</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="heure_consultation" class="form-label">Heure de consultation</label>
+                            <select class="form-select" id="heure_consultation" name="heure_consultation" required readonly>
+                                <option value="" selected disabled>Sélectionnez une heure</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-submit">Valider</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Inscription Réussie</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage">Vos informations ont été enregistrées avec succès!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="assets/js/RendezVous.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
