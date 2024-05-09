@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/css/MdpStyle.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/pharmacie.png"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Modify password</title>
+</head>
+<body>
+<div class="container">
+    <form id="passwordForm" th:action="@{/reinitialiser_mdp}" method="post" role="form">
+        <section class="header">
+            <h1>Création de Mot de Passe</h1>
+            <img src="assets/img/connexion.png"/>
+        </section>
+        <section class="input">
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Nouveau mot de passe" name="nv_mdp"/>
+            </div>
+            <div class="input-group">
+                <input type="password" id="confirmPassword" name="confirmpassword" placeholder="Confirmez votre mot de passe"/>
+                <span id="confirmPasswordError" style="color: red; font-size:15px;
+                text-align:center; margin-bottom: 12px;
+    font-weight: bold;">
+                </span>
+            </div>
+        </section>
+        <div id="messageContainer" ></div>
+        <section class="btn">
+            <button id="confirmButton">Confirmer</button>
+        </section>
+    </form>
+</div>
+<script src="assets/js/ResetPassword.js"></script>
+</body>
+</html>

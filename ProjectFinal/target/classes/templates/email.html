@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/css/StyleEmail.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/pharmacie.png"/>
+    <title>Email Verification</title>
+</head>
+<body>
+
+<div class="container" style="display: inline-block;">
+    <section class="header">
+        <h1>Email Verification</h1>
+        <div>
+            <img src="assets/img/poster.png"/>
+        </div>
+
+    </section>
+    <form id="EmailForm" th:action="@{/api/send-verification-code}" method="post" role="form">
+        <section class="input">
+            <p>Veuillez entrer votre adresse mail</p><br>
+            <div class="inputs">
+                <input id ="email"type="email" placeholder="Email" name="email" required/>
+            </div>
+        </section>
+        <br>
+        <span id="messageContainer" style="display: inline-block;"></span>
+        <section class="btn">
+            <button type="submit" id="sendButton" onclick="submitForm()" >
+                <span class="loading-icon"></span> <span id="sendText">Envoyer</span>
+            </button>
+        </section>
+    </form>
+</div>
+<script src="assets/js/Email.js"></script>
+</body>
+</html>

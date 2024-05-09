@@ -1,0 +1,82 @@
+.custom-btn {
+            background-color: #00ADB3; /* Changez la couleur de fond selon vos préférences */
+            border-color: #00ADB3; /* Changez la couleur de la bordure si nécessaire */
+        }
+        .custom-btn:hover {
+            background-color: #005761; /* Changez la couleur de fond selon vos préférences */
+            border-color: #005761; /* Changez la couleur de la bordure si nécessaire */
+        }
+        .btn-register {
+            border-radius: 7px; /* Bordures adoucies */
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2); /* Ombre */
+            transition: all 0.3s ease; /* Effet de transition */
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px); /* Effet de léger soulèvement */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Renforcer l'ombre au survol */
+        }
+        /* Styles personnalisés pour les champs de saisie */
+        .form-outline {
+            position: relative; /* Pour positionner les icônes à l'intérieur */
+            margin-bottom: 1rem;
+        }
+
+        .form-icon {
+            position: absolute;
+            top: 30%;
+            left: 1rem;
+            transform: translateY(-30%);
+            color: #ced4da; /* Couleur de l'icône */
+        }
+
+        .form-control {
+            border-radius: 30px;
+            padding-left: 3rem;
+            margin-bottom: 0.5rem; /* Marge inférieure réduite */
+        }
+        .form-control:focus {
+            border-color: #00ADB3; /* Changez la couleur de la bordure au focus */
+            box-shadow: 0 0 0 0.25rem rgba(0, 173, 179, 0.25); /* Changez la couleur et l'intensité de l'ombre au focus */
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #eee; /* Définir la couleur de fond souhaitée */
+        }
+        .error-message {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+        }
+        .popup{
+          background: rgba(0, 0, 0, 0.6);
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          display: none;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+        .content_popup{
+          height: 250px;
+          width: 500px;
+          background: #fff;
+          padding: 20px;
+          border-radius: 5px;
+          position: relative;
+        }
+        .close{
+          position: absolute;
+          top: -15px;
+          right: -15px;
+          height: 20px;
+          background: #fff;
+          width: 20px;
+          border-radius: 50%;
+          cursor: pointer;
+
+        }
