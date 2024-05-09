@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'nom-de-votre-image:latest'
+        DOCKER_IMAGE = ''mon-projet:1.0.0'
     }
 
     stages {
@@ -33,9 +33,9 @@ pipeline {
             steps {
                 // Pousse l'image Docker vers un registre
                 script {
-                    docker.withRegistry('https://registry.example.com', 'credentials-id') {
-                        docker.image(env.DOCKER_IMAGE).push()
-                    }
+                   docker.withRegistry('https://docker.example.com', 'credentials-id') {
+    docker.image(env.DOCKER_IMAGE).push()
+}
                 }
             }
         }
