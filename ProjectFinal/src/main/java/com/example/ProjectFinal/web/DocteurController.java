@@ -64,6 +64,7 @@ public class DocteurController {
                 Docteur docteurDto = new Docteur();
                 docteurDto.setId_docteur(docteur.getId_docteur());
                 docteurDto.setNom(docteur.getNom());
+                docteurDto.setPrenom(docteur.getPrenom());
                 docteurDtos.add(docteurDto);
             }
             return ResponseEntity.ok(docteurDtos);
@@ -122,7 +123,7 @@ public class DocteurController {
 
     // Méthode pour vérifier si une heure de consultation est disponible
     private boolean isConsultationHourAvailable(Docteur doctorId, Date selectedDate, Time consultationTime) {
-        long countAppointments = rendezVousRepository.countByDocteurAndDateRDVAndHeureConsultation(doctorId, selectedDate, consultationTime);
+        long countAppointments = rendezVousRepository.countByDocteurAndDateRDVAndHeureConsultationAndStatutRDV(doctorId, selectedDate, consultationTime);
 
         return countAppointments < 5; // Vérifie si moins de 5 rendez-vous sont planifiés à cette heure
     }

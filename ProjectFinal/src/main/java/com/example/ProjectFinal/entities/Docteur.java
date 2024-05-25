@@ -1,4 +1,6 @@
 package com.example.ProjectFinal.entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,16 +26,14 @@ public class Docteur implements Serializable {
     private String tel;
     private Date dat_naiss;
     private String email;
+    private boolean archive;
+    @JsonManagedReference
     @OneToMany(mappedBy="docteur")
     private List<rendez_Vous> RDVS;
     @OneToMany(mappedBy="docteur")
     private List<Horaire> horaires;
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name="id_specialite")
-    private Specialité Specialite;
-    @Override
-    public String toString() {
-        return "Docteur{id=" + id_docteur + ", nom='" + Nom + "', prenom='" + Prenom + "'}";
-    }
+    @JoinColumn(name="id")
+    private Specialité specialite;
 }
-

@@ -61,8 +61,17 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio</artifactId>
+			<version>8.23.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.libphonenumber</groupId>
+			<artifactId>libphonenumber</artifactId>
+			<version>8.12.34</version> <!-- Assurez-vous d'utiliser la dernière version disponible -->
+		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>

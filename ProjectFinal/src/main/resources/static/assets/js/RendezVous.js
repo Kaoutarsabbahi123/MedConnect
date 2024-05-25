@@ -8,9 +8,9 @@
                  type: 'GET',
                  success: function(data) {
                      var docteurs = data;
-                     var options = '<option value="">Choisissez un docteur</option>';
+                     var options = '<option value="">Sélectionnez une docteur</option>';
                      docteurs.forEach(function(docteur) {
-                         options += `<option value="${docteur.id_docteur}">${docteur.nom}</option>`;
+                       options += `<option value="${docteur.id_docteur}">${docteur.nom} ${docteur.prenom}</option>`;
                      });
                      $('#docteur').prop('readonly', false); // Rendre le champ modifiable
                      $('#docteur').empty().append(options); // Mettre à jour les options du champ docteur
@@ -26,32 +26,36 @@
      });
  });
   $(document).ready(function() {
-        $('#docteur').change(function() {
-            var selectedId = $(this).val();
-            if (selectedId !== "") {
-                $.ajax({
-                    url: '/docteur/' + selectedId + '/dates-dispo',
-                    type: 'GET',
-                    success: function(data) {
-                        var dates = data;
-                        var dateOptions = dates.map(function(date) {
-                            // Convertir chaque date en format lisible (e.g., DD/MM/YYYY)
-                            var formattedDate = new Date(date).toLocaleDateString('fr-FR');
-                            return `<option value="${formattedDate}">${formattedDate}</option>`;
-                        });
-                        $('#date-dispo').prop('readonly', false); // Rendre le champ modifiable
-                        $('#date-dispo').empty().append(dateOptions); // Mettre à jour les options du champ date-dispo
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            } else {
-                $('#date-dispo').prop('readonly', true); // Rendre le champ date-dispo en lecture seule
-                $('#date-dispo').val(''); // Effacer le champ date-dispo si aucun docteur n'est sélectionné
-            }
-        });
-    });
+      $('#docteur').change(function() {
+          var selectedId = $(this).val();
+          if (selectedId !== "") {
+              $.ajax({
+                  url: '/docteur/' + selectedId + '/dates-dispo',
+                  type: 'GET',
+                  success: function(data) {
+                      var dates = data;
+                      var dateOptions = dates.map(function(date) {
+                          // Convertir chaque date en format lisible (e.g., DD/MM/YYYY)
+                          var formattedDate = new Date(date).toLocaleDateString('fr-FR');
+                          return `<option value="${formattedDate}">${formattedDate}</option>`;
+                      });
+
+                      // Mettre à jour les options du champ date-dispo
+                      $('#date-dispo').prop('readonly', false); // Rendre le champ modifiable
+                      $('#date-dispo').empty().append('<option value="">Sélectionnez une date</option>').append(dateOptions);
+                  },
+                  error: function(xhr, status, error) {
+                      console.error(xhr.responseText);
+                  }
+              });
+          } else {
+              // Aucun docteur sélectionné, réinitialiser le champ date-dispo
+              $('#date-dispo').prop('readonly', true); // Rendre le champ date-dispo en lecture seule
+              $('#date-dispo').empty().append('<option value="">Sélectionnez une date</option>'); // Effacer et afficher le message par défaut
+          }
+      });
+  });
+
  $(document).ready(function() {
     $('#date-dispo').change(function() {
         var selectedDate = $(this).val();
@@ -73,7 +77,7 @@
                     var options = data.map(hour => `<option value="${hour}">${hour}</option>`);
 
                     // Vider la liste déroulante et ajouter les options
-                    $('#heure_consultation').empty().append(options);
+                      $('#heure_consultation').empty().append('<option value="">Sélectionnez une heure</option>').append(options);
                 } else {
                     console.error('Data is not an array:', data);
                 }
@@ -106,7 +110,6 @@ $(document).ready(function() {
             },
             error: function(xhr, status, error) {
                 console.log("Erreur lors de la soumission du formulaire:", error);
-                // Gérer les erreurs ici si nécessaire
             }
         });
     });

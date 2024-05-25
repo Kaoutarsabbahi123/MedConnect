@@ -1,4 +1,5 @@
 package com.example.ProjectFinal.entities;
+import com.example.ProjectFinal.entities.rendez_Vous;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class patientNonAuthetifie implements Serializable{
     private String tel;
     private Date dat_naiss;
     private String email;
+    private boolean archive;
     @OneToMany(mappedBy="patientNA")
     private List<rendez_Vous> RDVS;
 }

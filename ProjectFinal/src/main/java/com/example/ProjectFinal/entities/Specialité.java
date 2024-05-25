@@ -1,4 +1,6 @@
 package com.example.ProjectFinal.entities;
+import com.example.ProjectFinal.entities.Docteur;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,8 +16,10 @@ import java.util.List;
 public class Specialité implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_specialite;
+    private Integer id;
     private String nom;
-    @OneToMany(mappedBy="Specialite")
+    private boolean archive;
+    @JsonManagedReference
+    @OneToMany(mappedBy="specialite")
     private List<Docteur> docteurs;
 }

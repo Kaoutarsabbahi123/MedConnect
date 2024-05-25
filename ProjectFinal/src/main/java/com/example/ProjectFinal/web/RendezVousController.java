@@ -7,12 +7,12 @@ import com.example.ProjectFinal.repositories.DocteurRepository;
 import com.example.ProjectFinal.repositories.PatientNonAuthetifieRepository;
 import com.example.ProjectFinal.repositories.RendezVousRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -72,6 +72,7 @@ public class RendezVousController {
             patient.setSexe(sexe);
             patient.setAddress(adresse);
             patient.setTel(telephone);
+            patient.setArchive(false);
             patientNonAuthetifieRepository.save(patient);
 
             try {
@@ -80,9 +81,12 @@ public class RendezVousController {
                 rendezVous.setHeure_consultation(Time.valueOf(heure_consultation));
                 rendezVous.setPatientNA(patient);
                 rendezVous.setDocteur(doctor);
+                rendezVous.setStatut_RDV("en attente");
                 rendezVousRepository.save(rendezVous);
-
-                return ResponseEntity.ok("Rendez-vous enregistré avec succès !");
+                String message = "Votre rendez-vous a été enregistré avec succès ! " +
+                        "Vous recevrez une réponse par SMS sous peu. " +
+                        "Merci pour votre confiance !";
+                return ResponseEntity.ok(message);
             } catch (DateTimeParseException e) {
                 e.printStackTrace();
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erreur lors de la conversion de la date du rendez-vous.");
@@ -91,4 +95,5 @@ public class RendezVousController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Docteur non trouvé.");
         }
     }
+
 }

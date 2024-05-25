@@ -13,5 +13,5 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class secretaire extends User implements Serializable {
-    private int code_secretaire;
+    private int code;
 }

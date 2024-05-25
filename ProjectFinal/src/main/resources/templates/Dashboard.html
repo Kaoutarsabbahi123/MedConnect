@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -16,6 +17,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <style>
+          .wrapper {
+     background-color: #EEEDED;
+     min-height: 100vh;
+     overflow-x: hidden;
+     }
+      </style>
   </head>
   <body>
 <div class="wrapper">
@@ -31,7 +40,7 @@
             </div>
             <ul class="list-unstyled components">
 			<li  class="active">
-                    <a href="#" class="dashboard"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
+                    <a href="/Dashboard" class="dashboard"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
                 </li>
 		      <div class="small-screen navbar-display">
 				<li class="dropdown d-lg-none d-md-block d-xl-none d-sm-block">
@@ -44,14 +53,28 @@
                     </ul>
                 </li>
 				</div>
-				 <li  class="">
-                    <a href="#"><i class="material-icons">library_books</i><span>Calender</span></a>
+                <li class="manage-secretaries" style="display: none;">
+                    <a href="/secretaires" ><i class="material-icons">people</i><span>Gérer les Secrétaires</span></a>
                 </li>
-               
-               
+                <li class="manage-doctors" style="display: none;">
+                    <a href="/docteur" ><i class="material-icons">people</i><span>Gérer les Docteurs</span></a>
+                </li>
+                <li class="manage-patients" style="display: none;">
+                    <a href="/patient" ><i class="material-icons">people</i><span>Gérer les Patients</span></a>
+                </li>
+                <li class="manage-specialities" style="display: none;">
+                    <a href="/specialites" ><i class="material-icons">people</i><span>Gérer les spécialités</span></a>
+                </li>
+                <li class="manage-schedules" style="display: none;">
+                    <a href="/Calendar" ><i class="material-icons">library_books</i><span>Gérer les Horaires</span></a>
+                </li>
+                <li class="manage-appointement" style="display: none;">
+                    <a href="/rdvsecretaire" ><i class="material-icons">book</i><span>Gérer les Rendez vous</span></a>
+                </li>
+                <li class="manage-historique" style="display: none;">
+                    <a href="/Historique" ><i class="material-icons">history</i><span>Historique</span></a>
+                </li>
             </ul>
-
-           
         </nav>
 		
 		
@@ -90,155 +113,219 @@
                 </div>
             </nav>
 	    </div>
-			
-			
-			<div class="main-content">
-			
-			<div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats shadow">
-                                <div class="card-header">
-                                    <div class="icon icon-warning">
-                                        <span class="material-icons">person</span>
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <p class="category"><strong>Médecins</strong></p>
-                                    <h3 class="card-title">70,340</h3>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons text-info">info</i>
-                                        <a href="#pablo">See detailed report</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats shadow">
-                                <div class="card-header">
-                                    <div class="icon icon-rose">
-                                       <span class="material-icons">event</span>
 
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <p class="category"><strong>Rendez-vous</strong></p>
-                                    <h3 class="card-title">102</h3>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">local_offer</i> Product-wise sales
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats shadow">
-                                <div class="card-header">
-                                    <div class="icon icon-success">
-                                        <span class="material-icons">account_circle</span>
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <p class="category"><strong>Patients</strong></p>
-                                    <h3 class="card-title">$23,100</h3>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">date_range</i> Weekly sales
-                                    </div>
+
+            <div class="main-content">
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="card card-stats shadow">
+                            <div class="card-header">
+                                <div class="icon icon-warning">
+                                    <span class="material-icons">person</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="card card-stats shadow">
-                                <div class="card-header">
-                                    <div class="icon icon-info">
-                                    
-<span class="material-icons">
-follow_the_signs
-</span>
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <p class="category"><strong>Followers</strong></p>
-                                    <h3 class="card-title">+245</h3>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">update</i> Just Updated
-                                    </div>
+                            <div class="card-content">
+                                <p class="category"><strong>Médecins</strong></p>
+                                <h3 class="card-title" th:text="${nombreMedecins}"></h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+
                                 </div>
                             </div>
                         </div>
                     </div>
-					
-					
-                        <div class="col-lg-13 col-md-18 ">
-                            <div class="card shadow" style="min-height: 380px">
-                                <div class="card-header card-header-text">
-                                    <h4 class="card-title">Employees Stats</h4>
-                                    <p class="category">New employees on 15th December, 2016</p>
-                                </div>
-                                <div class="card-content table-responsive">
-                                    <table class="table table-hover">
-                                        <thead class="text-primary">
-                                            <tr><th>ID</th>
-                                            <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
-                                        </tr></thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Bob Williams</td>
-                                                <td>$23,566</td>
-                                                <td>USA</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Mike Tyson</td>
-                                                <td>$10,200</td>
-                                                <td>Canada</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Tim Sebastian</td>
-                                                <td>$32,190</td>
-                                                <td>Netherlands</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="card card-stats shadow">
+                            <div class="card-header">
+                                <div class="icon icon-rose">
+                                    <span class="material-icons">event</span>
                                 </div>
                             </div>
-                        </div>		
-			<footer class="footer">
-                <div class="container-fluid">
-				  <div class="row">
-				<div class="col-md-6" style="margin-left:630px;">
-				 <p class="copyright d-flex justify-content-end" > © Copyright MedConnect. All Rights Reserved</p>
-				</div>
-				  </div>
-				    </div>
-            </footer>
-					
-					</div>
-					
-				
+                            <div class="card-content">
+                                <p class="category"><strong>Rendez-vous</strong></p>
+                                <h3 class="card-title" th:text="${nombreRendezVous}"></h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="card card-stats shadow">
+                            <div class="card-header">
+                                <div class="icon icon-success">
+                                    <span class="material-icons">account_circle</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="category"><strong>Patients</strong></p>
+                                <h3 class="card-title" th:text="${nombrePatients}"></h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card card-stats shadow">
+                            <div class="card-content">
+                                <canvas id="appointmentChart" style="max-height: 45vh;" ></canvas>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">local_offer</i> <span>Statistiques concernant les rendez-vous</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card card-stats shadow">
+                            <div class="card-content">
+                                <canvas id="specialtyChart" height="200" style="max-height: 45vh;" ></canvas>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons text-info">info</i>
+                                    <span>Statistiques concernant les docteurs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+</div>
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/Dashboard.js"></script>
+<script src="assets/js/role.js"></script>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: '/api/specialites',
+            type: 'GET',
+            success: function(data) {
+                var filteredSpecialites = data.filter(function(specialite) {
+                return !specialite.archive; // Filtrer celles avec archive false
+            });
 
-  
-     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-   <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-   <script src="assets/js/popper.min.js"></script>
-   <script src="assets/js/bootstrap.min.js"></script>
-   <script src="assets/js/Dashboard.js"></script>
+            if (filteredSpecialites.length > 0) {
+                var labels = filteredSpecialites.map(function(specialite) {
+                    return specialite.nom;
+                });
+                var data = filteredSpecialites.map(function(specialite) {
+                    return specialite.docteurs.length;
+                });
+                    var specialtyChartCanvas = document.getElementById('specialtyChart').getContext('2d');
+                    var specialtyChart = new Chart(specialtyChartCanvas, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Nombre de médecins par spécialité',
+                                data: data,
+                                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                  borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    console.error("Aucune donnée n'a été renvoyée par l'API.");
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $.ajax({
+          url: '/api/rdvs',
+          type: 'GET',
+          success: function(data) {
+              // Filtrer les rendez-vous avec archive à false
+              var filteredRDVs = data.filter(function(rdv) {
+                  return !rdv.archive; // Filtrer ceux avec archive false
+              });
+
+              if (filteredRDVs.length > 0) {
+                  // Compter le nombre de rendez-vous pour chaque statut
+                  var confirmedCount = filteredRDVs.filter(function(rdv) {
+                      return rdv.statut_RDV === 'confirmé';
+                  }).length;
+
+                  var pendingCount = filteredRDVs.filter(function(rdv) {
+                      return rdv.statut_RDV === 'en attente';
+                  }).length;
+
+                  var cancelledCount = filteredRDVs.filter(function(rdv) {
+                      return rdv.statut_RDV === 'annulé';
+                  }).length;
+
+                  // Calculer les pourcentages
+                  var totalCount = confirmedCount + pendingCount + cancelledCount;
+                  var confirmedPercentage = (confirmedCount / totalCount) * 100;
+                  var pendingPercentage = (pendingCount / totalCount) * 100;
+                  var cancelledPercentage = (cancelledCount / totalCount) * 100;
+
+                  var appointmentData = {
+                      labels: ['RDV confirmé', 'RDV en attente', 'RDV annulé'],
+                      datasets: [{
+                          label: 'Appointment Status',
+                          data: [confirmedPercentage, pendingPercentage, cancelledPercentage],
+                          backgroundColor: [
+                              'rgba(75, 192, 192, 0.5)',
+                              'rgba(255, 206, 86, 0.5)',
+                              'rgba(255, 99, 132, 0.5)'
+                          ],
+                          borderColor: [
+                              'rgba(75, 192, 192, 1)',
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(255, 99, 132, 1)'
+                          ],
+                          borderWidth: 1
+                      }]
+                  };
+
+                  // Créer le graphique à secteurs des rendez-vous
+                  var appointmentChartCanvas = document.getElementById('appointmentChart').getContext('2d');
+                  var appointmentChart = new Chart(appointmentChartCanvas, {
+                      type: 'pie',
+                      data: appointmentData,
+                      options: {
+                          // Ajoutez des options supplémentaires ici si nécessaire
+                      }
+                  });
+              } else {
+                  console.error("Aucune donnée de rendez-vous non archivée n'a été renvoyée par l'API.");
+              }
+          },
+          error: function(xhr, status, error) {
+              console.error(error);
+          }
+      });
+  });
+
+</script>
 
   </body>
-  
   </html>

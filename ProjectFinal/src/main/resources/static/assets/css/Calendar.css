@@ -1,0 +1,97 @@
+   #calendar {
+    width: 90%;
+    height: 560px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin-top:45px;
+    }
+
+    h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    }
+
+    .modal-dialog {
+    max-width: 400px;
+    }
+
+    .modal-content {
+    border-radius: 8px;
+    }
+
+    .modal-header {
+    border-bottom: none;
+    }
+
+    .modal-body {
+    padding: 20px;
+    }
+
+    .form-group label {
+    font-weight: bold;
+    }
+
+    .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    }
+    .fc .fc-toolbar-title {
+    font-size: 1.75em;
+    margin: 0px;
+    color:grey;
+}
+    .fc .fc-button-primary {
+    background-color: #00ADB3;
+    border-color: #00ADB3;
+    color: var(--fc-button-text-color);
+}
+        .modal{
+        margin-top:100px;}
+       /* .fc-direction-ltr .fc-daygrid-event.fc-event-end, .fc-direction-rtl .fc-daygrid-event.fc-event-start {
+    margin-right: 2px;
+    background-color: #00ADB3;
+}
+        .fc .fc-daygrid-event-harness {
+    background-color:#00ADB3 ;
+}*/
+        .fc-event.appointment {
+    background-color: #00ADB3; /* Couleur de fond pour les rendez-vous */
+    color: #fff;
+     border-color: #00ADB3;/* Couleur du texte */
+}
+.dropdown-menu {
+    display: none; /* Par défaut, le menu est caché */
+    position: absolute;
+    background-color: #fff; /* Couleur de fond du menu */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Ombre */
+    z-index: 1;
+}
+
+/* Style des éléments de liste à l'intérieur du dropdown */
+.dropdown-menu li {
+    list-style: none; /* Enlever les puces */
+}
+
+/* Style des liens à l'intérieur du dropdown */
+.dropdown-menu li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #333; /* Couleur du texte */
+    text-decoration: none;
+}
+
+/* Au survol du menu, afficher le dropdown */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Style des liens de menu déroulant au survol */
+.dropdown-menu li a:hover {
+    background-color: #f0f0f0; /* Couleur de fond au survol */
+}

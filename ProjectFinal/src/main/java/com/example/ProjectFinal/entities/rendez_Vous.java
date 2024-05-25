@@ -1,4 +1,5 @@
 package com.example.ProjectFinal.entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,9 +21,12 @@ public class rendez_Vous implements Serializable{
     @Temporal(TemporalType.TIME)
     private Time heure_consultation;
     private String statut_RDV;
+    private boolean archive;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="CIN")
     private patientNonAuthetifie patientNA;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="id_docteur")
     private Docteur docteur;

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>MedConnect -Inscrivez-vous</title>
+    <title>Rendez vous</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -13,9 +13,9 @@
     <style>
         /* Styles personnalisés */
         body {
-            background-color: #eee;
             color: #187C88;
             padding: 20px;
+
         }
         .form-container {
             background-color: white;
@@ -141,8 +141,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="specialite" class="form-label">Spécialité du docteur</label>
                             <select  class="form-select " id="specialite" name="specialite"  required>
-                                <option value="">Choisissez une spécialité</option>
-                                <option th:each="specialite: ${specialites}" th:value="${specialite.id_specialite}" th:text="${specialite.nom}"></option>
+                                <option value="">Sélectionnez une spécialité</option>
+                                <option th:each="specialite: ${specialites}" th:value="${specialite.id}" th:text="${specialite.nom}"></option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -182,7 +182,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="successModalLabel">Inscription Réussie</h5>
+                <h5 class="modal-title" id="successModalLabel" style="color:black;">Inscription Réussie</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

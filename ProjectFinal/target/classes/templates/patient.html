@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Patient</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!----css3---->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+    <link rel="icon" type="image/png" href="assets/img/pharmacie.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <style>
+        .wrapper {
+    background-color: #B0A8A8;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.main-content {
+    padding-bottom: 50px; /* Ajustez la valeur en fonction de la hauteur de votre pied de page */
+}
+        .btn-primary {
+       background-color: #8D989A; /* Couleur de fond blanche */
+       border-color: #8D989A; /* Couleur de bordure extérieure */
+        /* Couleur du texte */
+   }
+
+   .btn-primary:hover {
+       background-color: #00ADB3; /* Couleur de fond au survol */
+       border-color: #00ADB3; /* Couleur de bordure au survol */
+   }
+
+       th {
+         color: #00ADB3; /* Couleur grise foncée */
+     }
+         /* Style for action buttons */
+         .action-btn {
+             border: none;
+             background: none;
+             cursor: pointer;
+             color: #8D989A;
+         }
+
+         .action-btn:hover {
+             color: #00ADB3;
+         }
+ .btn-primary:focus, .btn-primary.focus {
+     box-shadow: 0 0 0 0.2rem rgba(0, 173, 179, 0.5);
+ }
+
+ .btn-primary .material-icons {
+     color: #fff;
+     font-size: 24px;
+     vertical-align: middle;
+ }
+
+        .form-control:focus {
+    border-color: #8D989A; /* Couleur de la bordure lorsqu'il est sélectionné */
+    box-shadow: none; /* Supprimer l'ombre lorsqu'il est sélectionné */
+}
+.modal-title {
+    color: #00ADB3; /* Définir la couleur de texte souhaitée */
+}
+#submitEdit {
+    background-color: #00ADB3; /* Couleur de fond originale */
+    border-color: #00ADB3; /* Couleur de bordure originale */
+    color: #fff; /* Couleur du texte */
+}
+
+/* Au survol */
+#submitEdit:hover {
+    background-color: #005761; /* Couleur de fond au survol */
+    border-color: #005761; /* Couleur de bordure au survol */
+}
+        #submitAdd {
+    background-color: #00ADB3; /* Couleur de fond originale */
+    border-color: #00ADB3; /* Couleur de bordure originale */
+    color: #fff; /* Couleur du texte */
+}
+
+/* Au survol */
+#submitAdd:hover {
+    background-color: #005761; /* Couleur de fond au survol */
+    border-color: #005761; /* Couleur de bordure au survol */
+}
+    </style>
+</head>
+<body>
+<div class="wrapper" style="background-color: #F2F2F2;">
+    <!-- Your existing sidebar and content -->
+    <!-- Sidebar -->
+
+    <div class="body-overlay"></div>
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3><img src="assets/img/pharmacie.png" class="img-fluid"/><span style="color:#005761;">MedConnect</span></h3>
+        </div>
+        <ul class="list-unstyled components">
+            <li >
+                <a href="/Dashboard" class="dashboard"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
+            </li>
+            <div class="small-screen navbar-display">
+                <li class="dropdown d-lg-none d-md-block d-xl-none d-sm-block">
+                    <a href="#profileSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="material-icons">person</i><span>User</span>
+                    </a>
+                    <ul class="collapse list-unstyled menu" id="profileSubmenu">
+                        <li><a th:href="@{/profile}">Profile</a></li>
+                        <li><a th:href="@{/}">Logout</a></li>
+                    </ul>
+                </li>
+            </div>
+            <li class="manage-secretaries" style="display: none;">
+                <a href="/secretaires" ><i class="material-icons">people</i><span>Gérer les Secrétaires</span></a>
+            </li>
+            <li class="manage-doctors" style="display: none;">
+                <a href="/docteur" ><i class="material-icons">people</i><span>Gérer les Docteurs</span></a>
+            </li>
+            <li class="manage-patients" style="display: none;">
+                <a href="/patient" ><i class="material-icons">people</i><span>Gérer les Patients</span></a>
+            </li>
+            <li class="manage-specialities" style="display: none;">
+                <a href="/specialites" ><i class="material-icons">people</i><span>Gérer les spécialités</span></a>
+            </li>
+            <li class="manage-schedules" style="display: none;">
+                <a href="/Calendar" ><i class="material-icons">library_books</i><span>Gérer les Horaires</span></a>
+            </li>
+            <li class="manage-appointement" style="display: none;">
+                <a href="/rdvsecretaire" ><i class="material-icons">book</i><span>Gérer les Rendez vous</span></a>
+            </li>
+            <li class="manage-historique" style="display: none;">
+                <a href="/Historique" ><i class="material-icons">history</i><span>Historique</span></a>
+            </li>
+
+        </ul>
+
+
+    </nav>
+    <!-- Page Content -->
+
+    <div id="content"  >
+        <div class="top-navbar">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="d-xl-block d-lg-block d-md-mone d-none">
+                        <span class="material-icons">arrow_back_ios</span>
+                    </button>
+
+                    <a class="navbar-brand" th:href="@{/}"> Gestion des patients </a>
+
+                    <button class="d-inline-block d-lg-none ml-auto more-button" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="material-icons">more_vert</span>
+                    </button>
+
+                    <div class="collapse navbar-collapse d-lg-block d-xl-block d-sm-none d-md-none d-none" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="dropdown nav-item">
+                                <a href="#" class="nav-link" data-toggle="dropdown">
+                                    <span class="material-icons">person</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a th:href="@{/profile}">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/}">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="main-content" >
+            <!-- Existing employee stats table -->
+            <div class="card shadow" style="min-height: 300px">
+                <!-- Existing card header -->
+                <!-- Existing employee stats table -->
+                <form action="/patient">
+                    <div class="card-header card-header-text d-flex justify-content-between align-items-center">
+                        <!-- Existing employee stats table -->
+
+                        <div class="input-group mx-auto" style="max-width: 350px;">
+                            <input type="text" class="form-control" placeholder="Cherchez..." aria-label="Search" name="keyword">
+                            <div class="input-group-append">
+
+                                <button class="btn btn-outline-secondary btn-sm" type="submit">
+                                    <span class="material-icons" style="font-size: 20px;">search</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary rounded-circle" data-toggle="modal" data-target="#addEmployeeModal">
+                            <span class="material-icons">add</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="card-content table-responsive">
+                    <!-- Existing table structure -->
+                    <table class="table table-hover">
+                        <!-- Table headings -->
+                        <thead class="text-primary">
+                        <tr>
+
+                            <th>CIN</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Sexe</th>
+                            <th>Téléphone</th>
+                            <th>Email</th>
+
+                            <th> </th> <!-- Nouvelle colonne pour les actions -->
+                        </tr>
+                        </thead>
+                        <!-- Table body -->
+                        <tbody>
+                        <!-- Boucle Thymeleaf pour afficher les secrétaires -->
+                        <tr th:each="patient : ${patients}" th:if="${!patient.archive}">
+                            <td th:text="${patient.CIN}"></td>
+                            <td th:text="${patient.Nom}"></td>
+                            <td th:text="${patient.Prenom}"></td>
+                            <td th:text="${patient.Sexe}"></td>
+                            <td th:text="${patient.tel}"></td>
+                            <td th:text="${patient.email}"></td>
+                            <td><input type="hidden" class="secretary-dateOfBirth" th:value="${patient.dat_naiss}" /></td>
+                            <td><input type="hidden" class="secretary-address" th:value="${patient.address}" /></td>
+
+                            <!-- Boutons pour les opérations CRUD -->
+                            <td>
+                                <button class="action-btn" data-toggle="modal" data-target="#viewEmployeeModal">
+                                    <span class="material-icons">visibility</span>
+                                </button>
+                                <button class="action-btn" data-toggle="modal" data-target="#editEmployeeModal">
+                                    <span class="material-icons">edit</span>
+                                </button>
+                                <button  type="submit" class="action-btn" data-toggle="modal" data-target="#deleteEmployeeModal">
+                                    <span class="material-icons">delete</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Si aucune donnée n'est disponible -->
+                        <tr th:if="${patients.empty}">
+                            <td colspan="7" class="text-center">Aucune donnée disponible</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:if="${totalPages > 1}">
+    <ul class="pagination">
+        <!-- Bouton pour aller à la première page -->
+        <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
+            <a class="page-link" th:href="@{/secretaires(page=0)}">Première</a>
+        </li>
+        <!-- Bouton pour aller à la page précédente -->
+        <li th:class="${currentPage == 0} ? 'page-item disabled' : 'page-item'">
+            <a class="page-link" th:href="@{/secretaires(page=${currentPage - 1})}">Précédente</a>
+        </li>
+        <!-- Boucle pour afficher les numéros de page -->
+        <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
+            th:class="${currentPage == pageNumber} ? 'page-item active' : 'page-item'">
+            <a class="page-link" th:href="@{/secretaires(page=${pageNumber})}" th:text="${pageNumber + 1}"></a>
+        </li>
+        <!-- Bouton pour aller à la page suivante -->
+        <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
+            <a class="page-link" th:href="@{/secretaires(page=${currentPage + 1})}">Suivante</a>
+        </li>
+        <!-- Bouton pour aller à la dernière page -->
+        <li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
+            <a class="page-link" th:href="@{/secretaires(page=${totalPages - 1})}">Dernière</a>
+        </li>
+    </ul>
+</div>
+
+nte -->
+<li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
+    <a class="page-link" th:href="@{/secretaires(page=${currentPage + 1})}">Suivante</a>
+</li>
+<!-- Bouton pour aller à la dernière page -->
+<li th:class="${currentPage == totalPages - 1} ? 'page-item disabled' : 'page-item'">
+    <a class="page-link" th:href="@{/secretaires(page=${totalPages - 1})}">Dernière</a>
+</li>
+</ul>
+</div>
+<!-- Modals for CRUD operations -->
+<!-- Add Employee Modal -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEmployeeModalLabel">Ajouter un(e) nouveau patient</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form content for adding employee details -->
+                <form id="addEmployeeForm" action="/save2" method="post">
+                    <!-- Form fields -->
+
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <label for="addCIN" class="form-label">CIN</label>
+                            <input type="text" class="form-control" id="addCIN" name="CIN" th:value="${pat.CIN}"required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="addNom" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="addNom" name="nom" th:value="${pat.nom}" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+
+                        <div class="col-md-6">
+                            <label for="addPrenom" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="addPrenom" name="Prenom" th:value="${pat.Prenom}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Sexe</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="sexe" id="addHomme" value="homme" th:checked="${pat.Sexe == 'homme'}"  checked required>
+                                <label class="form-check-label" for="addHomme">Homme</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="sexe" id="addFemme" value="femme" th:checked="${pat.Sexe == 'femme'}" required>
+                                <label class="form-check-label" for="addFemme">Femme</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <label for="addBirthdate" class="form-label">Date de Naissance</label>
+                            <input type="date" class="form-control" id="addBirthdate" name="dat_naiss" th:value="${pat.dat_naiss}"  required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="addAdresse" class="form-label">Adresse</label>
+                            <input type="text" class="form-control" id="addAdresse" name="address" th:value="${pat.address}" required>
+                        </div>
+
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <label for="addAdresse" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="addemail" name="email" th:value="${pat.email}" required>
+                        </div>
+
+                    <div class="col-md-6">
+                        <label for="addTelephone" class="form-label">Téléphone</label>
+                        <input type="text" class="form-control" id="addTelephone" name="tel" th:value="${pat.tel}" required>
+                    </div>
+                  </div>
+
+                    <div class="modal-footer">
+                        <!-- Cancel button -->
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <!-- Submit button for adding employee details -->
+                        <button type="submit" class="btn btn-primary" id="submitAdd">Valider</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- View Employee Modal -->
+<div class="modal fade" id="viewEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="viewEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewEmployeeModalLabel">Toutes les informations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Your form content goes here -->
+                <form>
+                    <!-- Form fields -->
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <label for="CIN" class="form-label">CIN</label>
+                            <input type="text" class="form-control" id="CIN" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nom" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="nom" readonly>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <label for="prenom" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="prenom" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Sexe</label>
+                            <div>
+                                <input type="radio" id="homme" name="sexe" value="homme" readonly>
+                                <label for="homme">Homme</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="femme" name="sexe" value="femme" readonly>
+                                <label for="femme">Femme</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <label for="birthdate" class="form-label">Date de Naissance</label>
+                            <input type="date" class="form-control" id="birthdate" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telephone" class="form-label">Téléphone</label>
+                            <input type="text" class="form-control" id="telephone" readonly>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <label for="adresse" class="form-label">Adresse</label>
+                            <input type="text" class="form-control" id="adresse" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telephone" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email" readonly>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal content -->
+<!-- Delete Employee Modal -->
+<div class="modal fade" id="deleteEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="deleteEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteEmployeeModalLabel">Confirmation de suppression</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cet patient ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <!-- Bouton pour confirmer la suppression -->
+                <button type="button" class="btn btn-danger" id="confirmDelete">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Employee Modal -->
+<div class="modal fade" id="editEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editEmployeeModalLabel">Modifier les informations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form content for editing employee details -->
+                <form id="editEmployeeForm">
+                    <!-- Form fields -->
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <label for="editCIN" class="form-label">CIN</label>
+                            <input type="text" class="form-control" id="editCIN" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="editNom" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="editNom"required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <label for="editPrenom" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="editPrenom"required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Sexe</label>
+                            <div>
+                                <input type="radio" id="editHomme" name="editSexe" value="homme"required>
+                                <label for="editHomme">Homme</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="editFemme" name="editSexe" value="femme" required>
+                                <label for="editFemme">Femme</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="mb-3 row">
+
+                        <div class="col-md-6">
+                            <label for="editBirthdate" class="form-label">Date de Naissance</label>
+                            <input type="date" class="form-control" id="editBirthdate">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="editTelephone" class="form-label">Téléphone</label>
+                            <input type="text" class="form-control" id="editTelephone" required>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-md-6">
+                            <label for="editAdresse" class="form-label">Adresse</label>
+                            <input type="text" class="form-control" id="editAdresse" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="editemail" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="editemail" required>
+                        </div>
+                    </div>
+
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!-- Cancel button -->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <!-- Submit button for updating employee details -->
+                <button type="button" class="btn btn-primary" id="submitEdit">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/Dashboard.js"></script>
+<script src="assets/js/role.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    // Sélection des champs de mot de passe et de confirmation
+    var passwordInput = document.getElementById("addPassword");
+    var confirmPasswordInput = document.getElementById("confirmPassword");
+
+    // Fonction de validation
+    function validatePassword() {
+        var password = passwordInput.value;
+        var confirmPassword = confirmPasswordInput.value;
+
+        // Vérification si les champs ne sont pas vides et que les valeurs ne correspondent pas
+        if (password !== "" && confirmPassword !== "" && password !== confirmPassword) {
+            // Affichage d'un message d'erreur
+            confirmPasswordInput.setCustomValidity("Les mots de passe ne correspondent pas.");
+        } else {
+            // Réinitialisation du message d'erreur
+            confirmPasswordInput.setCustomValidity("");
+        }
+    }
+
+    // Écouteur d'événement pour le champ de confirmation
+    confirmPasswordInput.addEventListener("input", validatePassword);
+
+    // Écouteur d'événement pour le champ de mot de passe
+    passwordInput.addEventListener("input", validatePassword);
+});
+// JavaScript code to handle delete confirmation
+     $(document).ready(function(){
+         // Lorsque le bouton de suppression est cliqué
+         $('.action-btn[data-target="#deleteEmployeeModal"]').click(function(){
+             // Afficher le modal de confirmation
+             $('#deleteEmployeeModal').modal('show');
+
+             // Récupérer l'identifiant de l'employé à supprimer
+             var employeeId = $(this).closest('tr').find('td:nth-child(1)').text();
+
+             // Ajouter un gestionnaire d'événements au bouton de confirmation
+             $('#confirmDelete').click(function(){
+                 // Envoyer une requête AJAX pour archiver l'employé
+                 $.ajax({
+                     url: '/archiveEmployeepat/' + employeeId, // Remplacer cette URL par l'URL appropriée pour archiver l'employé
+                     type: 'PUT', // Utilisez PUT ou DELETE selon votre implémentation
+                     success: function(result){
+                         // Cacher le modal de confirmation après la suppression
+                         $('#deleteEmployeeModal').modal('hide');
+                         // Rafraîchir la page ou mettre à jour la liste des employés si nécessaire
+                          window.location.reload();
+                     },
+                     error: function(){
+                         // Gérer les erreurs si nécessaire
+                         console.error('Erreur lors de la suppression de l\'employé');
+                     }
+                 });
+      });
+        });
+    });
+
+
+</script>
+<script>
+    // JavaScript code to handle employee details modal
+    $(document).ready(function(){
+        // When the view button is clicked
+        $('.action-btn[data-target="#viewEmployeeModal"]').click(function(){
+            // Retrieve the secretary object from the current row
+            var secretaire = {
+                cin: $(this).closest('tr').find('td:nth-child(1)').text(),
+                nom: $(this).closest('tr').find('td:nth-child(2)').text(),
+                prenom: $(this).closest('tr').find('td:nth-child(3)').text(),
+                sexe: $(this).closest('tr').find('td:nth-child(4)').text(),
+                dateNaissance: $(this).closest('tr').find('.secretary-dateOfBirth').val(),
+                telephone: $(this).closest('tr').find('td:nth-child(5)').text(),
+                email: $(this).closest('tr').find('td:nth-child(6)').text(),
+                adresse: $(this).closest('tr').find('.secretary-address').val(),
+
+            };
+
+            // Fill the form fields with secretary details
+            fillForm(secretaire);
+
+            // Show the modal
+            $('#viewEmployeeModal').modal('show');
+        });
+
+        // Function to fill form fields with secretary details
+        function fillForm(secretaire) {
+            $('#CIN').val(secretaire.cin);
+            $('#nom').val(secretaire.nom);
+            $('#prenom').val(secretaire.prenom);
+          $('input[name="sexe"][value="' + secretaire.sexe.toLowerCase() + '"]').prop('checked', true);
+            $('#birthdate').val(secretaire.dateNaissance);
+            $('#telephone').val(secretaire.telephone);
+            $('#adresse').val(secretaire.adresse);
+            $('#email').val(secretaire.email);
+
+        }
+    });
+</script>
+<script>
+    // JavaScript code to handle employee details modal
+    $(document).ready(function(){
+        // When the edit button is clicked
+        $('.action-btn[data-target="#editEmployeeModal"]').click(function(){
+            // Retrieve the employee object from the current row
+            var employee = {
+
+                cin: $(this).closest('tr').find('td:nth-child(1)').text(),
+                nom: $(this).closest('tr').find('td:nth-child(2)').text(),
+                prenom: $(this).closest('tr').find('td:nth-child(3)').text(),
+                sexe: $(this).closest('tr').find('td:nth-child(4)').text(),
+                dateNaissance: $(this).closest('tr').find('.secretary-dateOfBirth').val(),
+                telephone: $(this).closest('tr').find('td:nth-child(5)').text(),
+                adresse: $(this).closest('tr').find('.secretary-address').val(),
+                email: $(this).closest('tr').find('td:nth-child(6)').text(),
+
+
+            };
+
+            // Fill the form fields with employee details
+            fillEditForm(employee);
+
+            // Show the modal for editing employee details
+            $('#editEmployeeModal').modal('show');
+        });
+
+        // Function to fill edit form fields with employee details
+        function fillEditForm(employee) {
+
+    $('#editCIN').val(employee.cin);
+    $('#editNom').val(employee.nom);
+    $('#editPrenom').val(employee.prenom);
+    $('input[name="editSexe"][value="' + employee.sexe.toLowerCase() + '"]').prop('checked', true);
+    $('#editBirthdate').val(employee.dateNaissance);
+    $('#editTelephone').val(employee.telephone);
+    $('#editAdresse').val(employee.adresse);
+    $('#editemail').val(employee.email); // Utilisez l'ID correct ici
+}
+
+        // Handle form submission for editing employee details
+        $('#submitEdit').click(function() {
+            // Retrieve edited employee details from the form
+            var editedEmployee = {
+                cin: $('#editCIN').val(),
+                nom: $('#editNom').val(),
+                prenom: $('#editPrenom').val(),
+                sexe: $('input[name="editSexe"]:checked').val(),
+                dat_naiss: $('#editBirthdate').val(),
+                tel: $('#editTelephone').val(),
+                address: $('#editAdresse').val(),
+                email: $('#editemail').val(),
+
+
+            };
+
+            // Perform AJAX request to update employee details
+            $.ajax({
+                url: '/updateEmployeepat/' + editedEmployee .cin,
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(editedEmployee),
+                success: function(result) {
+                    // Close the modal after successful update
+                    $('#editEmployeeModal').modal('hide');
+                    // Refresh the page or update the employee list as needed
+                    window.location.reload();
+                },
+                error: function() {
+                    // Handle errors if necessary
+                    console.error('Error updating employee details');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

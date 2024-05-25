@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>How to create full calendar in jQuery</title>
+    <title>Horaire</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -26,62 +26,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- JS Bootstrap -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <style>
-
-    #calendar {
-    width: 90%;
-    height: 560px;
-    margin: 0 auto;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    margin-top:40px;
-    }
-
-    h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    }
-
-    .modal-dialog {
-    max-width: 400px;
-    }
-
-    .modal-content {
-    border-radius: 8px;
-    }
-
-    .modal-header {
-    border-bottom: none;
-    }
-
-    .modal-body {
-    padding: 20px;
-    }
-
-    .form-group label {
-    font-weight: bold;
-    }
-
-    .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    }
-
-    .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-    }
-    .fc .fc-toolbar-title {
-    font-size: 1.75em;
-    margin: 0px;
-    color:grey;
-}
-    .fc .fc-button-primary {
-    background-color: #00ADB3;
-    border-color: #00ADB3;
-    color: var(--fc-button-text-color);
-}
-    </style>
+    <link rel="stylesheet" href="assets/css/Calendar.css">
 </head>
 
 <body>
@@ -92,28 +37,51 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3><img src="assets/img/pharmacie.png" class="img-fluid"/><span style="color:#005761;">MedConnect</span></h3>
+            <h3><img src="assets/img/pharmacie.png" class="img-fluid"/><span style="color:#005761; font-size: 20px;
+    transition: all 0.5s ease;
+    font-weight: 700;
+    margin: 0px;">MedConnect</span></h3>
         </div>
         <ul class="list-unstyled components">
             <li >
-                <a href="#" class="dashboard"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
+                <a href="/Dashboard" class="dashboard" style="font-family: 'Roboto', sans-serif; color: #555e58;    font-weight: 400;">
+                    <i class="material-icons">dashboard</i><span>Dashboard</span></a>
             </li>
             <div class="small-screen navbar-display">
                 <li class="dropdown d-lg-none d-md-block d-xl-none d-sm-block">
-                    <a href="#profileSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="#profileSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-family: 'Roboto', sans-serif;
+    color: #555e58;    font-weight: 400;">
                         <i class="material-icons">person</i><span>User</span>
                     </a>
                     <ul class="collapse list-unstyled menu" id="profileSubmenu">
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="/">Logout</a></li>
+                        <li><a href="#" style="font-family: 'Roboto', sans-serif;
+    color: #555e58;    font-weight: 400;" >Profile</a></li>
+                        <li><a href="/"style="font-family: 'Roboto', sans-serif;
+    color: #555e58;    font-weight: 400;">Logout</a></li>
                     </ul>
                 </li>
             </div>
-            <li  class="">
-                <a href="#"><i class="material-icons">library_books</i><span>Calender</span></a>
+            <li class="manage-secretaries" style="display: none;" >
+                <a href="/secretaires" style="font-family: 'Roboto', sans-serif ;color: #555e58;    font-weight: 400;" ><i class="material-icons">people</i><span>Gérer les Secrétaires</span></a>
             </li>
-
-
+            <li class="manage-doctors" style="display: none;" >
+                <a href="/docteur" style="font-family: 'Roboto', sans-serif ;color: #555e58;    font-weight: 400;"><i class="material-icons">people</i><span>Gérer les Docteurs</span></a>
+            </li>
+            <li class="manage-patients" style="display: none;" >
+                <a href="/patient" style="font-family: 'Roboto', sans-serif ;color: #555e58;    font-weight: 400;" ><i class="material-icons">people</i><span>Gérer les Patients</span></a>
+            </li>
+            <li class="manage-specialities" style="display: none;" >
+                <a href="/specialites"  style="font-family: 'Roboto', sans-serif ;color: #555e58;    font-weight: 400;"><i class="material-icons">people</i><span>Gérer les spécialités</span></a>
+            </li>
+            <li class="manage-schedules"style="display: none;"  >
+                <a href="/Calendar"  style="font-family: 'Roboto', sans-serif ;color: #555e58;    font-weight: 400;"><i class="material-icons">library_books</i><span>Gérer les Horaires</span></a>
+            </li>
+            <li class="manage-appointement" style="display: none;">
+                <a href="/rdvsecretaire"style="font-family: 'Roboto', sans-serif ;color: #555e58;    font-weight: 400;" ><i class="material-icons">book</i><span>Gérer les Rendez vous</span></a>
+            </li>
+            <li class="manage-historique" style="display: none;">
+                <a href="/Historique" style="font-family: 'Roboto', sans-serif ;color: #555e58;    font-weight: 400;"><i class="material-icons">history</i><span>Historique</span></a>
+            </li>
         </ul>
 
 
@@ -131,7 +99,7 @@
                         <span class="material-icons">arrow_back_ios</span>
                     </button>
 
-                    <a class="navbar-brand" href="#"> Profile </a>
+                    <a class="navbar-brand" href="#"> Horaire</a>
 
                     <button class="d-inline-block d-lg-none ml-auto more-button" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,10 +114,10 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#">Profile</a>
+                                        <a href="#" style="text-decoration:none;">Profile</a>
                                     </li>
                                     <li>
-                                        <a href="/">Logout</a>
+                                        <a href="/" style="text-decoration:none;" >Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -174,7 +142,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="doctorModalLabel">Enter Doctor Details</h5>
+                <h5 class="modal-title" id="doctorModalLabel">Horaire</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -182,89 +150,90 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="doctorSelect">Doctor Name</label>
+                        <label for="doctorSelect">Nom de docteur</label>
                         <select class="form-control" id="doctorSelect">
-                            <option value="">Choisissez une spécialité</option>
+                            <option value="">Sélectionnez un docteur</option>
                             <option th:each="docteur: ${doctors}" th:value="${docteur.id_docteur}" th:text="${docteur.nom + ' ' + docteur.prenom}"></option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="startTimeInput">Start Time</label>
-                        <input type="text" class="form-control" id="startTimeInput">
+                        <label for="startTimeInput">Heure de début</label>
+                        <input type="time" class="form-control" id="startTimeInput">
                     </div>
                     <div class="form-group">
-                        <label for="endTimeInput">End Time</label>
-                        <input type="text" class="form-control" id="endTimeInput">
+                        <label for="endTimeInput">Heure de fin</label>
+                        <input type="time" class="form-control" id="endTimeInput">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="saveDoctorBtn">Save</button>
+                <button type="button" class="btn btn-primary" id="saveDoctorBtn" style="background-color:#00ADB3;border-color:#00ADB3;">Save</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-           var calendarEl = document.getElementById('calendar');
-           var calendar = new FullCalendar.Calendar(calendarEl, {
-               initialView: 'dayGridMonth',
-               editable: true,
-               selectable: true,
-               events: [
-                   // Vos événements existants ici
-               ],
-               dateClick: function(info) {
-                   $('#doctorModal').modal('show');
+<!-- Modal pour mettre à jour ou supprimer un événement -->
+<div class="modal fade" id="updateDeleteEventModal" tabindex="-1" role="dialog" aria-labelledby="updateDeleteEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateDeleteEventModalLabel">Modifier ou supprimer l'horaire</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="updateDoctorSelect">Nom de docteur</label>
+                        <select class="form-control" id="updateDoctorSelect">
+                            <option value="">Sélectionnez un docteur</option>
+                            <option th:each="docteur: ${doctors}" th:value="${docteur.id_docteur}" th:text="${docteur.nom + ' ' + docteur.prenom}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateStartTimeInput">Heure de début </label>
+                        <input type="time" class="form-control" id="updateStartTimeInput">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateEndTimeInput">Heure de fin </label>
+                        <input type="time" class="form-control" id="updateEndTimeInput">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!-- Boutons pour mettre à jour ou supprimer l'événement -->
+                <button type="button" class="btn btn-primary" id="updateEventBtn" style="background-color:#00ADB3;border-color:#00ADB3;">Update</button>
+                <button type="button" class="btn btn-danger" id="deleteEventBtn">Delete</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal pour confirmer la suppression -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmer la suppression</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cet événement ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Supprimer</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                   $('#saveDoctorBtn').on('click', function() {
-                       var doctorId = $('#doctorSelect').val();
-                       var startTime = $('#startTimeInput').val();
-                       var endTime = $('#endTimeInput').val();
-                       var selectedDate = info.dateStr; // Récupérer la date sélectionnée dans le calendrier
-
-                       if (doctorId && startTime && endTime && selectedDate) {
-                           $.ajax({
-                               url: '/api/horaires',
-                               type: 'POST',
-                               contentType: 'application/json',
-                               data: JSON.stringify({
-                                   doctorId: doctorId,
-                                   startTime: startTime,
-                                   endTime: endTime,
-                                   date: selectedDate // Envoyer la date sélectionnée dans la requête
-                               }),
-                               success: function(response) {
-                                   // Ajouter l'événement au calendrier côté frontend
-                                   calendar.addEvent({
-                                       title: response.title,
-                                       start: response.start,
-                                       end: response.end
-                                   });
-
-                                   // Rafraîchir le calendrier pour afficher le nouvel événement
-                                   calendar.refetchEvents();
-
-                                   // Masquer le modal
-                                   $('#doctorModal').modal('hide');
-                               },
-                               error: function() {
-                                   alert('Failed to save doctor');
-                               }
-                           });
-                       } else {
-                           alert('Please fill in all fields');
-                       }
-                   });
-               }
-           });
-
-           calendar.render();
-       });
-
-    </script>
+<script src="assets/js/Calendar.js"></script>
 <script src="assets/js/Dashboard.js"></script>
+<script src="assets/js/role.js"></script>
 </body>
 </html>
-<!--commentaire-->

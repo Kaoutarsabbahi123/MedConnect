@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,8 @@ import java.util.Map;
 public class AuthController {
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private HttpSession session;
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UserLoginRequest loginRequest, HttpSession session) {
         String login = loginRequest.getLogin();
@@ -49,7 +51,7 @@ public class AuthController {
         if (user != null && user.getMot_passe().equals(password)) {
             // Réinitialiser le nombre de tentatives échouées si la connexion réussit
             failedAttemptsMap.remove(login);
-
+            session.setAttribute("userRole", user.getRole());
             // Stocke l'utilisateur dans la session
             session.setAttribute("user", user);
             return ResponseEntity.ok("Login successful");
@@ -59,6 +61,10 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
         }
     }
-
+    @GetMapping("/userRole")
+    public ResponseEntity<String> getUserRole() {
+        String userRole = (String) session.getAttribute("userRole");
+        return ResponseEntity.ok(userRole);
+    }
 
 }

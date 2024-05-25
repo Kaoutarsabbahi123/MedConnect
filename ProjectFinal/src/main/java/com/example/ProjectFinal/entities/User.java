@@ -1,17 +1,12 @@
 package com.example.ProjectFinal.entities;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.sql.Date;
-
 @Entity
 @Data
 @NoArgsConstructor
@@ -29,4 +24,5 @@ public class User implements Serializable {
     private String address;
     private String tel;
     private Date dat_naiss;
+    private boolean archive;
 }

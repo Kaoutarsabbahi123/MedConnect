@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <title>Acceuil</title>
+    <title>Profile</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!----css3---->
@@ -53,8 +53,26 @@
                     </ul>
                 </li>
             </div>
-            <li  class="">
-                <a href="#"><i class="material-icons">library_books</i><span>Calender</span></a>
+            <li class="manage-secretaries" style="display: none;">
+                <a href="/secretaires" ><i class="material-icons">people</i><span>Gérer les Secrétaires</span></a>
+            </li>
+            <li class="manage-doctors" style="display: none;">
+                <a href="/docteur" ><i class="material-icons">people</i><span>Gérer les Docteurs</span></a>
+            </li>
+            <li class="manage-patients" style="display: none;">
+                <a href="/patient" ><i class="material-icons">people</i><span>Gérer les Patients</span></a>
+            </li>
+            <li class="manage-specialities" style="display: none;">
+                <a href="/specialites" ><i class="material-icons">people</i><span>Gérer les spécialités</span></a>
+            </li>
+            <li class="manage-schedules" style="display: none;">
+                <a href="/Calendar" ><i class="material-icons">library_books</i><span>Gérer les Horaires</span></a>
+            </li>
+            <li class="manage-appointement" style="display: none;">
+                <a href="/rdvsecretaire" ><i class="material-icons">book</i><span>Gérer les Rendez vous</span></a>
+            </li>
+            <li class="manage-historique" style="display: none;">
+                <a href="/Historique" ><i class="material-icons">history</i><span>Historique</span></a>
             </li>
 
 
@@ -324,5 +342,6 @@
 });
 
 </script>
+<script src="assets/js/role.js"></script>
 </body>
 </html>

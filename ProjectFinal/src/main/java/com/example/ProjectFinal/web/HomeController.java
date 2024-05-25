@@ -28,7 +28,7 @@ public class HomeController {
     public String RecupereMdp() {
         return "motdepasse";
     }
-    @GetMapping("/Dashboard")
-    public String Dashboard(){return "Dashboard";}
+    @GetMapping("/sms")
+    public String sms(){return "sms";}
 
 }
