@@ -40,9 +40,8 @@ pipeline {
             steps {
                 script {
                     bat """
-                    rem Supprimer les anciens conteneurs s'ils existent
                     for /f "tokens=*" %%A in ('docker ps -a -q --filter "name=${CONTAINER_NAME}"') do docker rm -f %%A
-                    rem Exécuter un nouveau conteneur
+                   
                     docker run -d --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:latest
                     """
                 }
@@ -52,7 +51,6 @@ pipeline {
         stage('Clean Up Old Containers') {
             steps {
                 script {
-                    rem Supprimer tous les conteneurs sauf le plus récent
                     bat """
                     for /f "skip=1 tokens=*" %%A in ('docker ps -a -q --filter "name=${CONTAINER_NAME}"') do docker rm -f %%A
                     """
