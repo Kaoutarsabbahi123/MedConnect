@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build(DOCKER_IMAGE)
+                    bat "docker build -t ${DOCKER_IMAGE} ."
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS) {
+                    withDockerRegistry(credentialsId: "${DOCKER_CREDENTIALS}", url: 'https://index.docker.io/v1/') {
                         docker.image(DOCKER_IMAGE).push('latest')
                     }
                 }
@@ -29,9 +29,9 @@ pipeline {
         stage('Clean Up Old Images') {
             steps {
                 script {
-                    sh '''
-                    docker images --filter=reference=$DOCKER_IMAGE --format "{{.ID}}" | tail -n +2 | xargs -r docker rmi
-                    '''
+                    bat """
+                    for /f "skip=1 delims=" %%I in ('docker images --filter=reference^=${DOCKER_IMAGE} --format "{{.ID}}"') do docker rmi -f %%I
+                    """
                 }
             }
         }
@@ -39,12 +39,12 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh '''
-                    # Supprimer les anciens conteneurs s'ils existent
-                    docker ps -a -q --filter "name=$CONTAINER_NAME" | xargs -r docker rm -f
-                    # Exécuter un nouveau conteneur
-                    docker run -d --name $CONTAINER_NAME $DOCKER_IMAGE:latest
-                    '''
+                    bat """
+                    rem Supprimer les anciens conteneurs s'ils existent
+                    for /f "tokens=*" %%A in ('docker ps -a -q --filter "name=${CONTAINER_NAME}"') do docker rm -f %%A
+                    rem Exécuter un nouveau conteneur
+                    docker run -d --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:latest
+                    """
                 }
             }
         }
@@ -52,10 +52,10 @@ pipeline {
         stage('Clean Up Old Containers') {
             steps {
                 script {
-                    // Supprimer tous les conteneurs sauf le plus récent
-                    sh '''
-                    docker ps -a -q --filter "name=$CONTAINER_NAME" | tail -n +2 | xargs -r docker rm -f
-                    '''
+                    rem Supprimer tous les conteneurs sauf le plus récent
+                    bat """
+                    for /f "skip=1 tokens=*" %%A in ('docker ps -a -q --filter "name=${CONTAINER_NAME}"') do docker rm -f %%A
+                    """
                 }
             }
         }
@@ -67,4 +67,3 @@ pipeline {
         }
     }
 }
-
