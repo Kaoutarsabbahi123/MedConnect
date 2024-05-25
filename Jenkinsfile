@@ -27,14 +27,14 @@ pipeline {
         }
 
         stage('Clean Up Old Images') {
-            steps {
-                script {
-                    bat """
-                    for /f "skip=1 delims=" %%I in ('docker images --filter=reference^=${DOCKER_IMAGE} --format "{{.ID}}"') do docker rmi -f %%I
-                    """
-                }
-            }
+    steps {
+        script {
+            bat '''
+            for /F "skip=1 delims=" %%I in ('docker images --filter reference=kaoutarsabbahi/imageprojet --format "{{.ID}}"') do docker rmi -f %%I
+            '''
         }
+    }
+}
 
         stage('Run Docker Container') {
             steps {
