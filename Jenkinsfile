@@ -30,7 +30,7 @@ pipeline {
     steps {
         script {
             bat '''
-            for /F "skip=1 delims=" %%I in ('docker images --filter reference=kaoutarsabbahi/imageprojet --format "{{.ID}}"') do docker rmi -f %%I
+            for /F "skip=1 delims=" %I in ('docker images kaoutarsabbahi/imageprojet -q') do docker rmi -f %I
             '''
         }
     }
