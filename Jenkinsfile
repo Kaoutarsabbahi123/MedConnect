@@ -5,17 +5,30 @@ pipeline {
         DOCKER_CREDENTIALS = 'docker-hub-credentials'
         DOCKER_IMAGE = 'kaoutarsabbahi/imageprojet'
         CONTAINER_NAME = 'my_container'
-        GIT_LFS_SKIP_SMUDGE = '1' // Add this to bypass LFS smudge filter
+        GIT_LFS_SKIP_SMUDGE = '1' // Set to bypass LFS smudge filter
     }
 
     stages {
-        stage('Checkout Source Code') {
+        stage('Prepare Environment') {
             steps {
                 script {
-                    // Temporarily bypass LFS smudge filter during checkout
-                    sh 'git lfs install --skip-smudge'
-                    checkout scm
+                    // Ensure Git LFS is installed and skip smudge filter
+                    bat 'git lfs install --skip-smudge'
                 }
+            }
+        }
+
+        stage('Checkout Source Code') {
+            steps {
+                // Checkout the source code with the environment variable set to skip LFS smudge filter
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: '*/main']], 
+                    doGenerateSubmoduleConfigurations: false, 
+                    extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: true], [$class: 'CheckoutOption', timeout: 10]], 
+                    submoduleCfg: [], 
+                    userRemoteConfigs: [[url: 'https://github.com/Kaoutarsabbahi123/LastVersion.git']]
+                ])
             }
         }
 
