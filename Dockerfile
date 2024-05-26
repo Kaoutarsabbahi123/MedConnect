@@ -2,10 +2,10 @@
 FROM openjdk:11-jre-slim
 
 # Définir le répertoire de travail à /app
-WORKDIR /app
+WORKDIR /LastVersion
 
 # Copier le fichier JAR dans l'image
-COPY ProjectFinal/target/ProjectFinal-1.0-SNAPSHOT.jar /app/ProjectFinal-1.0-SNAPSHOT.jar
+COPY  ProjectFinal/target/ProjectFinal-0.0.1-SNAPSHOT.jar . 
 
 # Exposer le port sur lequel l'application écoute
 EXPOSE 8080
