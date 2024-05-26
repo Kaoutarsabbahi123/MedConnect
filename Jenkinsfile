@@ -8,6 +8,16 @@ pipeline {
     }
     
     stages {
+        stage('Clean Up Old Containers') {
+            steps {
+                script {
+                    bat """
+                    for /f "tokens=*" %%A in ('docker ps -a -q --filter "name=${CONTAINER_NAME}"') do docker rm -f %%A
+                    """
+                }
+            }
+        }
+        
         stage('Build Docker Image') {
             steps {
                 script {
@@ -25,34 +35,20 @@ pipeline {
                 }
             }
         }
-
-        stage('Clean Up Old Images') {
-    steps {
-        script {
-            bat '''
-            for /F "skip=1 delims=" %I in ('docker images kaoutarsabbahi/imageprojet -q') do docker rmi -f %I
-            '''
-        }
-    }
-}
-
+        
         stage('Run Docker Container') {
             steps {
                 script {
-                    bat """
-                    for /f "tokens=*" %%A in ('docker ps -a -q --filter "name=${CONTAINER_NAME}"') do docker rm -f %%A
-                   
-                    docker run -d --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:latest
-                    """
+                    bat "docker run -d --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:latest"
                 }
             }
         }
 
-        stage('Clean Up Old Containers') {
+        stage('Clean Up Old Images') {
             steps {
                 script {
                     bat """
-                    for /f "skip=1 tokens=*" %%A in ('docker ps -a -q --filter "name=${CONTAINER_NAME}"') do docker rm -f %%A
+                    for /F "skip=1 delims=" %I in ('docker images ${DOCKER_IMAGE} -q') do docker rmi -f %I
                     """
                 }
             }
