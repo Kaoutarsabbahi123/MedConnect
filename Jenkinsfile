@@ -8,6 +8,15 @@ pipeline {
     }
 
     stages {
+        stage('Build Application') {
+            steps {
+                script {
+                    // Commande pour construire le fichier JAR (assurez-vous que Maven est installé)
+                    bat 'mvn clean package'
+                }
+            }
+        }
+
         stage('Clean Up Old Containers') {
             steps {
                 script {
