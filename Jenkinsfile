@@ -46,7 +46,7 @@ pipeline {
             steps {
                 script {
                     // Run a new container named 'my_container' using the latest image
-                    bat "docker run -d --name %CONTAINER_NAME% %DOCKER_IMAGE%:latest"
+                    bat "docker run -d -p 8080:80 --name %CONTAINER_NAME% %DOCKER_IMAGE%:latest"
                 }
             }
         }
