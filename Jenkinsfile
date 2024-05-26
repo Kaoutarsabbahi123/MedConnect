@@ -5,17 +5,28 @@ pipeline {
         DOCKER_CREDENTIALS = 'docker-hub-credentials'
         DOCKER_IMAGE = 'kaoutarsabbahi/imageprojet'
         CONTAINER_NAME = 'my_container'
+        GIT_LFS_SKIP_SMUDGE = '1' // Add this to bypass LFS smudge filter
     }
 
     stages {
-        stage('Build Application') {
-    steps {
-        dir('ProjectFinal') {
-            // Commande pour construire le fichier JAR (assurez-vous que Maven est installé)
-            bat 'mvn clean package'
+        stage('Checkout Source Code') {
+            steps {
+                script {
+                    // Temporarily bypass LFS smudge filter during checkout
+                    sh 'git lfs install --skip-smudge'
+                    checkout scm
+                }
+            }
         }
-    }
-}
+
+        stage('Build Application') {
+            steps {
+                dir('ProjectFinal') {
+                    // Command to build the JAR file (ensure Maven is installed)
+                    bat 'mvn clean package'
+                }
+            }
+        }
 
         stage('Clean Up Old Containers') {
             steps {
