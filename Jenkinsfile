@@ -11,9 +11,11 @@ pipeline {
         stage('Clean Up Old Containers') {
             steps {
                 script {
-                    bat """
+                    // Remove any existing container named 'my_container'
+                    bat '''
                     for /f "tokens=*" %%A in ('docker ps -a -q --filter "name=${CONTAINER_NAME}"') do docker rm -f %%A
-                    """
+                    exit 0
+                    '''
                 }
             }
         }
@@ -21,6 +23,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    // Build a new Docker image from the Dockerfile in the current directory
                     bat "docker build -t ${DOCKER_IMAGE} ."
                 }
             }
@@ -29,6 +32,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
+                    // Push the newly built Docker image to Docker Hub
                     withDockerRegistry(credentialsId: "${DOCKER_CREDENTIALS}", url: 'https://index.docker.io/v1/') {
                         docker.image(DOCKER_IMAGE).push('latest')
                     }
@@ -39,6 +43,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
+                    // Run a new container named 'my_container' using the latest image
                     bat "docker run -d --name ${CONTAINER_NAME} ${DOCKER_IMAGE}:latest"
                 }
             }
@@ -47,9 +52,11 @@ pipeline {
         stage('Clean Up Old Images') {
             steps {
                 script {
-                    bat """
+                    // Remove old Docker images to save space
+                    bat '''
                     for /F "skip=1 delims=" %I in ('docker images ${DOCKER_IMAGE} -q') do docker rmi -f %I
-                    """
+                    exit 0
+                    '''
                 }
             }
         }
@@ -57,6 +64,7 @@ pipeline {
 
     post {
         always {
+            // Clean up the workspace after the pipeline execution
             cleanWs()
         }
     }
