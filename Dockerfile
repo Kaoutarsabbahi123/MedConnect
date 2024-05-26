@@ -1,11 +1,14 @@
-# Choisissez une image de base appropriée pour votre application Spring Boot
-FROM openjdk:11
+# Utiliser une image de base Java
+FROM openjdk:11-jre-slim
 
-# Définissez le répertoire de travail dans le conteneur où votre application sera copiée
-WORKDIR /LastVersion
+# Définir le répertoire de travail à /app
+WORKDIR /app
 
-# Copiez le fichier JAR de votre application Spring Boot dans le répertoire de travail du conteneur
-COPY  ProjectFinal/target/ProjectFinal-0.0.1-SNAPSHOT.jar . 
+# Copier le fichier JAR dans l'image
+COPY ProjectFinal/target/ProjectFinal-1.0-SNAPSHOT.jar /app/ProjectFinal-1.0-SNAPSHOT.jar
 
-# Définissez la commande par défaut à exécuter lorsque le conteneur démarre
+# Exposer le port sur lequel l'application écoute
+EXPOSE 8080
+
+# Commande pour exécuter l'application
 CMD ["java", "-jar", "ProjectFinal-1.0-SNAPSHOT.jar"]
